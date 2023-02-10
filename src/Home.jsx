@@ -24,6 +24,9 @@ const Home = () => {
             width="20"
           />
         </div>
+        <div>
+        <a href="create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create</a>
+        </div>
         <div className="plantlist">
           {plant.map((plant) => (
             <Card1
@@ -35,6 +38,7 @@ const Home = () => {
             />
           ))}
         </div>
+        
       </div>
     </div>
   );
