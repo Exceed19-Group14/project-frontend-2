@@ -5,13 +5,25 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [plant, setPlant] = useState([]);
-  useEffect(() => {
-    axios.get("http://group14.exceed19.online/plant").then((data) => {
-      console.log(data);
-      setPlant(data.data);
-    });
-  }, []);
+  const [plant, setPlant] = useState([{
+    plant_id:1,
+    plant_date:100,
+    moisture:200,
+    temperature:300,
+    light:400,
+  },{
+    plant_id:2,
+    plant_date:100,
+    moisture:200,
+    temperature:300,
+    light:400,
+  }]);
+  // useEffect(() => {
+  //   axios.get("http://group14.exceed19.online/plant").then((data) => {
+  //     console.log(data);
+  //     setPlant(data.data);
+  //   });
+  // }, []);
 
   return (
     <div>

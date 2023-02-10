@@ -4,6 +4,7 @@ import Home from "./Home";
 import Create from "./Create";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import Detailid from "./Detailid";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/detail" element={<Detail />} />
+            <Route path="/detail/:id" element={<Detailid />} />
             <Route path="/create" element={<Create />} />
           </Routes>
         </BrowserRouter>
