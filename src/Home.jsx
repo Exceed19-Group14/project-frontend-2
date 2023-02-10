@@ -5,25 +5,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [plant, setPlant] = useState([{
-    plant_id:1,
-    plant_date:100,
-    moisture:200,
-    temperature:300,
-    light:400,
-  },{
-    plant_id:2,
-    plant_date:100,
-    moisture:200,
-    temperature:300,
-    light:400,
-  }]);
-  // useEffect(() => {
-  //   axios.get("http://group14.exceed19.online/plant").then((data) => {
-  //     console.log(data);
-  //     setPlant(data.data);
-  //   });
-  // }, []);
+  const [plant, setPlant] = useState([]);
+  useEffect(() => {
+    axios.get("/plant").then(({ data }) => setPlant(data));
+  }, []);
 
   return (
     <div>
@@ -37,20 +22,26 @@ const Home = () => {
           />
         </div>
         <div>
-        <a href="create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Create</a>
+          <a
+            href="create"
+            className="btn btn-primary btn-lg active"
+            role="button"
+            aria-pressed="true"
+          >
+            Create
+          </a>
         </div>
         <div className="plantlist">
           {plant.map((plant) => (
             <Card1
-              id={plant.plant_id}
+              id={plant._id}
               date={plant.plant_date}
-              moist={plant.moisture}
-              temp={plant.temperature}
-              light={plant.light}
+              moist={plant.moisture ?? "N/A"}
+              temp={plant.temperature ?? "N/A"}
+              light={plant.light ?? "N/A"}
             />
           ))}
         </div>
-        
       </div>
     </div>
   );
