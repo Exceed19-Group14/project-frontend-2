@@ -6,13 +6,13 @@ const Radio = () => {
         <>
             <div className='radio'>
                 <div  >
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
                     <label class="form-check-label" for="flexRadioDefault1">
                         Auto
                     </label>
                 </div>
                 <div>
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
                     <label class="form-check-label" for="flexRadioDefault2">
                         Manual
                     </label>

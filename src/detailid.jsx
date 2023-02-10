@@ -2,10 +2,14 @@ import Card from "./components/card";
 import Radio from "./components/radio-button";
 import pic from "./components/water-b.png";
 import "./App.css"
+import { useParams } from "react-router-dom";
 
-function Detail() {
+function Detailid() {
+    const { id } = useParams();
+
   return (
     <div >
+        
       < Radio/>
       <button type="button" className="btn btn-danger-1 " >
         <img src={pic} className='water'/>
@@ -32,4 +36,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default Detailid;
