@@ -25,5 +25,10 @@ font-family: 'Prompt', sans-serif;
     width: auto;
     height: auto;
     float: right;
-    background-color: rgb(244, 243, 218);
+    background-color: transparent;
+    border-color: black;
+}
+.btn:hover{
+    background-color: rgb(222, 39, 29);
+    
 }
