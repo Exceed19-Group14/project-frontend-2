@@ -32,8 +32,10 @@ const Home = () => {
           </a>
         </div>
         <div className="plantlist">
-          {plant.map((plant) => (
+          {plant.map((plant, index) => (
             <Card1
+              key={index}
+              name={plant.name}
               id={plant._id}
               date={plant.plant_date}
               moist={plant.moisture ?? "N/A"}

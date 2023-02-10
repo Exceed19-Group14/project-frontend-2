@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/card_home.css";
 import pic from "../components/pic02.png";
+import { useNavigate } from "react-router-dom";
 
 const Card1 = ({ id, date, moist, temp, light }) => {
+  const navigate = useNavigate();
   return (
-    <div className="card1">
+    <div className="card1" onClick={() => navigate(`/detail/${id}`)}>
       <h1>ID: {id}</h1>
       <img
         src={pic}

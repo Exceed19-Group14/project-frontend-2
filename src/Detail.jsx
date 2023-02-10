@@ -2,24 +2,35 @@ import Card from "./components/card";
 import Radio from "./components/radio-button";
 import pic from "./components/water-b.png";
 import "./App.css";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Detail() {
+  const { id } = useParams();
+
+  const [plant, setPlant] = useState({});
+
+  useEffect(() => {
+    axios.get(`/plant/${id}`).then(({ data }) => setPlant(data));
+  }, []);
+
   return (
     <div>
       <Radio />
       <button type="button" className="btn btn-danger-1 ">
         <img src={pic} className="water" />
       </button>
-      <h1>Tree name</h1>
+      <h1>Tree name: {plant.name}</h1>
       <Card img={"https://cdn-icons-png.flaticon.com/512/1752/1752941.png"} />
       <div className="detail">
-        <h4>Temperature: </h4>
+        <h4>Temperature: {plant.temperature ?? "N/A"}</h4>
       </div>
       <div className="detail">
-        <h4>Moisture: </h4>
+        <h4>Moisture: {plant.moisture ?? "N/A"} </h4>
       </div>
       <div className="detail">
-        <h4>Light: </h4>
+        <h4>Light: {plant.light ?? "N/A"}</h4>
       </div>
       <button type="button" className="btn btn-danger-2">
         <svg
