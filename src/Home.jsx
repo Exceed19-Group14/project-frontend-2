@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Card1 from "./components/card_home";
 import { useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 const Home = () => {
   const [plant, setPlant] = useState([]);
   useEffect(() => {
@@ -22,15 +24,17 @@ const Home = () => {
             width="20"
           />
         </div>
-        {plant.map((plant) => (
-          <Card1
-            id={plant.plant_id}
-            date={plant.plant_date}
-            moist={plant.moisture}
-            temp={plant.temperature}
-            light={plant.light}
-          />
-        ))}
+        <div className="plantlist">
+          {plant.map((plant) => (
+            <Card1
+              id={plant.plant_id}
+              date={plant.plant_date}
+              moist={plant.moisture}
+              temp={plant.temperature}
+              light={plant.light}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

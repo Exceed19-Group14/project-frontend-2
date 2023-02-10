@@ -30,6 +30,7 @@
   font-family: 'Prompt', sans-serif;
 }
 
-.pic{
-    
+.plantlist{
+  display: flex;
+  flex-direction: row;
 }

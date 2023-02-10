@@ -23,15 +23,7 @@ const Navbar = () => {
             <img src={logo} width="100" alt="logo-aquabot" />
           </div>
         </a>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="create" text-align="right">
-                Create your own tree
-              </a>
-            </li>
-          </ul>
-        </div>
+        
       </nav>
     </>
   );
