@@ -10,15 +10,23 @@ function Detail() {
   const { id } = useParams();
 
   const [plant, setPlant] = useState({});
+  const modeState = useState(0);
 
   useEffect(() => {
-    axios.get(`/plant/${id}`).then(({ data }) => setPlant(data));
+    axios.get(`/plant/${id}`).then(({ data }) => {
+      setPlant(data);
+      modeState[1](data.mode);
+    });
   }, []);
 
   return (
     <div>
-      <Radio />
-      <button type="button" className="btn btn-danger-1 ">
+      <Radio state={modeState} />
+      <button
+        type="button"
+        className="btn btn-danger-1 "
+        disabled={modeState[0] === 1}
+      >
         <img src={pic} className="water" />
       </button>
       <h1>Tree name: {plant.name}</h1>
