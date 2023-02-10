@@ -6,27 +6,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const [plant, setPlant] = useState([]);
-  //   const [plant, setPlant] = useState([
-  //     {
-  //       plant_id: 1,
-  //       plant_date: 100,
-  //       moisture: 200,
-  //       temperature: 300,
-  //       light: 400,
-  //     },
-  //     {
-  //       plant_id: 2,
-  //       plant_date: 100,
-  //       moisture: 200,
-  //       temperature: 300,
-  //       light: 400,
-  //     },
-  //   ]);
   useEffect(() => {
-    axios.get("http://group14.exceed19.online/plant").then((data) => {
-      console.log(data);
-      setPlant(data.data);
-    });
+    axios.get("/plant").then(({ data }) => setPlant(data));
   }, []);
 
   return (
@@ -55,10 +36,11 @@ const Home = () => {
             <Card1
               key={index}
               name={plant.name}
+              id={plant._id}
               date={plant.plant_date}
-              moist={plant.moisture}
-              temp={plant.temperature}
-              light={plant.light}
+              moist={plant.moisture ?? "N/A"}
+              temp={plant.temperature ?? "N/A"}
+              light={plant.light ?? "N/A"}
             />
           ))}
         </div>

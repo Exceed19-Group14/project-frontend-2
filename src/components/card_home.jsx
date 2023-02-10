@@ -1,15 +1,21 @@
 import React from "react";
 import "../styles/card_home.css";
 import pic from "../components/pic02.png";
-import { Link, useNavigate } from "react-router-dom";
 
-const Card1 = ({ name, date, moist, temp, light, key }) => {
-  const navigate = useNavigate();
+const Card1 = ({ id, date, moist, temp, light }) => {
   return (
-    <div className="card1" onClick={() => navigate(`/detail/${id}`)}>
-      <img src={pic} alt="plant" />
-      <div className="det">Name: {name}</div>
-      <div className="det">Date: {date}</div>
+    <div className="card1">
+      <h1>ID: {id}</h1>
+      <img
+        src={pic}
+        alt="plant"
+        style={{
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
+      />
+      <div className="det">Date: {new Date(date).toLocaleDateString()}</div>
+      <div className="det">Time: {new Date(date).toLocaleTimeString()}</div>
       <div className="det">Moisture: {moist}</div>
       <div className="det">Temperature: {temp}</div>
       <div className="det">Light: {light}</div>
