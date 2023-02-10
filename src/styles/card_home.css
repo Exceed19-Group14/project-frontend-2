@@ -1,0 +1,35 @@
+.card1{
+    width: 250px;
+
+    text-align: left;
+    background-color: #fff;
+    color: #6e6431;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Prompt', sans-serif;
+}
+
+.card1:hover{
+    text-align: left;
+  width: 250px;
+  background-color:#fff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-family: 'Prompt', sans-serif;
+}
+
+.pic{
+    
+}

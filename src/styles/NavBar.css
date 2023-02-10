@@ -1,0 +1,24 @@
+.bg-green{
+  background-color: rgb(191, 219, 56);
+}
+.nav-container {
+    width: 100%;
+    margin-left: 10%;
+  }
+  .nav-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 3rem;
+    justify-content: space-between;
+      margin: 0;
+  }
+  
+  .no-bullets {
+    list-style-type: none;
+  }
+  
+  .logo {
+    margin-left: 50%;
+
+  }

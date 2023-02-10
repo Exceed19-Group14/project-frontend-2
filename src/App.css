@@ -1,0 +1,17 @@
+main {
+padding: 1rem;
+width: 60%;
+margin: auto;
+text-align: center;
+font-family: 'Nunito', sans-serif;
+font-family: 'Prompt', sans-serif;
+}
+.detail{
+    padding: 1rem;
+    background-color: rgb(252, 226, 42);
+    color: rgb(81, 31, 31);
+    margin-bottom: 5%;
+    text-align: center;
+    border-radius: 90px;
+    width:35%;
+}
