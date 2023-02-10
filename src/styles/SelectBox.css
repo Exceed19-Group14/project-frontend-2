@@ -1,8 +1,7 @@
-.TextBox {
+.SelectBox{
     font-size: 14px;
     width: 290px;
     border: 2px solid;
     border-color: #D3D3D3;
-    border-radius: 4px; 
- }
-
+    border-radius: 4px;
+}

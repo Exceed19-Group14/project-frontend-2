@@ -3,8 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+axios.defaults.baseURL =
+  import.meta.env.VITE_API_URL ?? "http://group14.exceed19.online";
 root.render(
   <React.StrictMode>
     <App />
