@@ -18,11 +18,14 @@ function Detail() {
   const [msg, setMsg] = useState(null);
 
   const changeState = async (e) => {
-    setMode(e.target.value);
     try {
-      await axios.patch(`/plant/${id}/mode`, {
-        mode,
-      });
+      await axios
+        .patch(`/plant/${id}/mode`, {
+          mode: +e.target.value,
+        })
+        .then(() => {
+          setMode((mode + 1) % 2);
+        });
     } catch (e) {
       setErr("Update mode failed");
       setMode(prev);
@@ -44,6 +47,21 @@ function Detail() {
       setMode(data.mode);
     });
   }, []);
+
+  // useEffect(() => {
+  //   axios.get(`/plant/${id}`).then(({ data }) => {
+  //     setMode(data.mode);
+  //   });
+  // });
+
+  // useEffect(() => {
+  //   axios
+  //     .patch(`/plant/${id}/water`, {
+  //       mode,
+  //     })
+  //     .then(() => setMsg("Watering send request success"))
+  //     .catch(() => setErr("Watering send request failed"));
+  // }, [mode] ,);
 
   return (
     <div>
@@ -77,6 +95,9 @@ function Detail() {
       <div className="detail">
         <h4>Light: {plant.light ?? "N/A"}</h4>
       </div>
+      <div className="detail">
+        <h4>Board: {plant.board ?? "N/A"}</h4>
+      </div>
       <Form.Select
         size="sm"
         style={{
@@ -88,8 +109,13 @@ function Detail() {
         <option value={1}>Auto</option>
         <option value={0}>Manual</option>
       </Form.Select>
-      <button type="button" className="btn btn-danger-2" onClick={unpairHanble}>
-        {/* <svg
+      {plant.board ? (
+        <button
+          type="button"
+          className="btn btn-danger-2"
+          onClick={unpairHanble}
+        >
+          {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -103,8 +129,9 @@ function Detail() {
             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
           />
         </svg> */}
-        Unpair
-      </button>
+          Unpair
+        </button>
+      ) : null}
     </div>
   );
 }

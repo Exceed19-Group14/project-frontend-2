@@ -13,11 +13,13 @@ const Create = () => {
   const [light, setLight] = useState("");
   const [board, setBoard] = useState("");
   const [boards, setBoards] = useState([]);
+  const [waterDuration, setWaterDuration] = useState(1000);
 
   const [plantDate, setPlantDate] = useState(new Date());
   const navigate = useNavigate();
 
   const clickEvent = async () => {
+    console.log(board);
     const data = {
       board: +board,
       name,
@@ -27,6 +29,8 @@ const Create = () => {
       targeted_moisture: +moist,
       targeted_light: +light,
     };
+
+    console.log(data);
 
     const response = await axios.post("/plant", data);
     if (response.status != 201) {
@@ -59,14 +63,14 @@ const Create = () => {
             />
           </div>
           <div>
-            <p>Temperature</p>
+            <p>Targeted Temperature</p>
             <TextBox
               inside="Temperature"
               onChange={(e) => setTemp(e.target.value)}
             />
           </div>
           <div>
-            <p>Moisture</p>
+            <p>Targeted Moisture</p>
             <TextBox
               inside="Moisture"
               onChange={(e) => setMoist(e.target.value)}
@@ -83,11 +87,33 @@ const Create = () => {
           </div>
           <div>
             <p>Board</p>
-            <Select
-              arr={boards}
-              k="board_id"
+            <select
+              aria-label="Default select example"
+              className="SelectBox"
+              defaultValue={boards[0]?.board_id}
               onChange={(e) => setBoard(e.target.value)}
-            />
+            >
+              {boards.map((item, index) => (
+                <option value={item.board_id} key={index}>
+                  {item.board_id}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <p>Time (in sec)</p>
+            <select
+              aria-label="Default select example"
+              className="SelectBox"
+              defaultValue={boards[0]?.board_id}
+              onChange={(e) => setBoard(e.target.value)}
+            >
+              {boards.map((item, index) => (
+                <option value={item.board_id} key={index}>
+                  {item.board_id}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>

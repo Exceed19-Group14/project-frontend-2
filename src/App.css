@@ -1,34 +1,39 @@
 main {
-padding: 1rem;
-width: 60%;
-margin: auto;
-text-align: center;
-font-family: 'Nunito', sans-serif;
-font-family: 'Prompt', sans-serif;
+  padding: 1rem;
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-family: "Prompt", sans-serif;
 }
-.detail{
-    padding: 1rem;
-    background-color: rgb(252, 226, 42);
-    color: rgb(81, 31, 31);
-    margin-bottom: 5%;
-    text-align: center;
-    border-radius: 90px;
-    width:35%;
+.detail {
+  padding: 1rem;
+  background-color: rgb(252, 226, 42);
+  color: rgb(81, 31, 31);
+  margin-bottom: 5%;
+  text-align: center;
+  border-radius: 90px;
+  width: 35%;
 }
 
-.water{
-    width: 50px;
-    height: 40px;
+.water {
+  width: 50px;
+  height: 40px;
 }
 
 .btn {
-    width: auto;
-    height: auto;
-    float: right;
-    background-color: transparent;
-    border-color: black;
+  width: auto;
+  height: auto;
+  float: right;
+  background-color: transparent;
+  border-color: black;
 }
-.btn:hover{
-    background-color: rgb(222, 39, 29);
-    
+.btn:hover {
+  background-color: rgb(222, 39, 29);
+}
+
+.navigate {
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

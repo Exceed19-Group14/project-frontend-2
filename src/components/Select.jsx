@@ -7,7 +7,7 @@ const Select = ({ arr, onChange, k }) => {
       onChange={onChange}
     >
       {arr.map((item, index) => (
-        <option value={item} key={index}>
+        <option value={item?.[k]} key={index}>
           {item?.[k]}
         </option>
       ))}

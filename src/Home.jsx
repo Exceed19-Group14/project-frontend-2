@@ -3,7 +3,7 @@ import Card1 from "./components/card_home";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./styles/Home.css"
+import "./styles/Home.css";
 
 const Home = () => {
   const [plant, setPlant] = useState([]);
@@ -24,16 +24,32 @@ const Home = () => {
             width="20"
           />
         </div>
+
         <div>
           <a
             href="create"
             className="btn btn-primary btn-lg active"
             role="button"
             aria-pressed="true"
+            style={{
+              marginLeft: "10px",
+            }}
           >
-            Create
+            Create Plant
           </a>
         </div>
+
+        <div>
+          <a
+            href="createboard"
+            className="btn btn-primary btn-lg active"
+            role="button"
+            aria-pressed="true"
+          >
+            Create Board
+          </a>
+        </div>
+
         <div className="plantlist">
           {plant.map((plant, index) => (
             <div className="plantlist">
