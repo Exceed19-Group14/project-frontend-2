@@ -158,13 +158,17 @@ function Detail() {
             style={{
               color: "black",
             }}
-            onClick={async () => {
+            onClick={async (e) => {
               try {
-                await axios.patch(`/plant/${id}/board`, {
-                  board: +board,
-                });
+                await axios
+                  .patch(`/plant/${id}/board`, {
+                    board: +board,
+                  })
+                  .then(() => {
+                    nav(0);
+                  });
               } catch (e) {
-                nav('/')
+                setErr(e.response.data.detail);
               }
             }}
           >
