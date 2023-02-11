@@ -15,7 +15,6 @@ function Detail() {
   const [mode, setMode] = useState(0);
   const [boards, setBoards] = useState([]);
   const [board, setBoard] = useState(0);
-
   const [err, setErr] = useState(null);
   const [msg, setMsg] = useState(null);
 
@@ -165,7 +164,7 @@ function Detail() {
                   board: +board,
                 });
               } catch (e) {
-                nav(`/detail/${id}`);
+                nav('/')
               }
             }}
           >
