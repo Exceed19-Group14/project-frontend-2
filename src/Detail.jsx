@@ -12,6 +12,22 @@ function Detail() {
   const [plant, setPlant] = useState({});
   const modeState = useState(0);
 
+  const [err, setErr] = useState(null);
+  const [msg, setMsg] = useState(null);
+
+  const changeState = async ({ target: { value } }) => {
+    console.log(value, "555");
+    modeState[1](value);
+    try {
+      await axios.patch(`/plant/${id}/mode`, {
+        mode: modeState[0],
+      });
+    } catch (e) {
+      setErr("Update mode failed");
+      modeState[1](1 - modeState[0]);
+    }
+  };
+
   useEffect(() => {
     axios.get(`/plant/${id}`).then(({ data }) => {
       setPlant(data);
@@ -21,11 +37,22 @@ function Detail() {
 
   return (
     <div>
-      <Radio state={modeState} />
+      <Radio state={modeState} onClick={changeState} />
+      {err ? <div className="alert alert-danger">{err}</div> : null}
       <button
         type="button"
         className="btn btn-danger-1 "
         disabled={modeState[0] === 1}
+        onClick={async () => {
+          try {
+            await axios.patch(`/plant/${id}/water`, {
+              status: 1,
+            });
+            setMsg("Watering send request success");
+          } catch (e) {
+            setErr("Watering send request failed");
+          }
+        }}
       >
         <img src={pic} className="water" />
       </button>

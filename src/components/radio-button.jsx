@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/radio-button.css";
 
-const Radio = ({ state }) => {
+const Radio = ({ state, onClick }) => {
   return (
     <>
       <div className="radio">
@@ -10,9 +10,10 @@ const Radio = ({ state }) => {
             className="form-check-input"
             type="radio"
             name="flexRadioDefault"
+            value={1}
             id="flexRadioDefault1"
-            checked={state[0] == 1}
-            onChange={() => state[1](1)}
+            checked={state[0] === 1 ? "checked" : null}
+            onClick={onClick}
           />
           <label className="form-check-label" for="flexRadioDefault1">
             Auto
@@ -24,8 +25,9 @@ const Radio = ({ state }) => {
             type="radio"
             name="flexRadioDefault"
             id="flexRadioDefault2"
-            checked={state[0] == 0}
-            onChange={() => state[1](0)}
+            value={0}
+            checked={state[0] === 0 ? "checked" : null}
+            onClick={onClick}
           />
           <label className="form-check-label" for="flexRadioDefault2">
             Manual
