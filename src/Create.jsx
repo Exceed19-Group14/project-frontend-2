@@ -75,13 +75,7 @@ const Create = () => {
               onChange={(e) => setMoist(e.target.value)}
             />
           </div>
-          <div>
-            <p>Light</p>
-            <TextBox
-              inside="Light"
-              onChange={(e) => setLight(e.target.value)}
-            />
-          </div>
+
           <div>
             <p>Plant Date</p>
             <DateTimePicker

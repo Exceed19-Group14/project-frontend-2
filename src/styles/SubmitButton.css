@@ -1,8 +1,6 @@
 .button {
-    background-color: #FFFDD0;
     border: 1px solid;
-    border-color: #D3D3D3;
-    font-size: 35px;
+    font-size: 20px;
     color: black;
     margin-top: 40px;
     margin-left: 620px;
@@ -11,4 +9,8 @@
     border-radius: 1em;
     outline: none;
     cursor: pointer;
+}
+
+.button:hover{
+    background-color: #FC7300;
 }
