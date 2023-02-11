@@ -109,17 +109,6 @@ function Detail() {
         <h4>Board: {plant.board ?? "N/A"}</h4>
       </div>
 
-      <Form.Select
-        size="sm"
-        style={{
-          marginBottom: "10px",
-        }}
-        onChange={changeState}
-        value={mode}
-      >
-        <option value={1}>Auto</option>
-        <option value={0}>Manual</option>
-      </Form.Select>
       {plant.board ? (
         <button
           type="button"

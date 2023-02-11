@@ -10,9 +10,9 @@ const Create = () => {
   const [name, setName] = useState("");
   const [temp, setTemp] = useState("");
   const [moist, setMoist] = useState("");
-  const [light, setLight] = useState("");
   const [board, setBoard] = useState("");
   const [boards, setBoards] = useState([]);
+  const [time, setTime] = useState("");
   const [waterDuration, setWaterDuration] = useState(1000);
 
   const [plantDate, setPlantDate] = useState(new Date());
@@ -27,7 +27,7 @@ const Create = () => {
       plant_image: 1,
       targeted_temperature: +temp,
       targeted_moisture: +moist,
-      targeted_light: +light,
+      targeted_light: 0,
     };
 
     console.log(data);
@@ -47,7 +47,7 @@ const Create = () => {
     });
   }, []);
 
-  useEffect(() => {}, [name, temp, moist, light, board]);
+  useEffect(() => {}, [name, temp, moist, board, time]);
 
   return (
     <div>
@@ -102,18 +102,23 @@ const Create = () => {
           </div>
             <div>
               <p>Time (in sec)</p>
-              <select
+              {/* <select
                 aria-label="Default select example"
-                className="SelectBox"
+                className="TextBox"
+                
                 defaultValue={boards[0]?.board_id}
-                onChange={(e) => setBoard(e.target.value)}
+                onChange={(e) => setTime(e.target.value)}
               >
                 {boards.map((item, index) => (
                   <option value={item.board_id} key={index}>
                     {item.board_id}
                   </option>
                 ))}
-              </select>
+              </select> */}
+              <TextBox
+              inside="Time"
+              onChange={(e) => setTime(e.target.value)}
+            />
             </div>
           </div>
         </div>
