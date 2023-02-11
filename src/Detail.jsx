@@ -6,26 +6,26 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import pic2 from "./components/pic02.png";
+import Form from "react-bootstrap/Form";
 
 function Detail() {
   const { id } = useParams();
 
   const [plant, setPlant] = useState({});
-  const modeState = useState(0);
+  const [mode, setMode] = useState(0);
 
   const [err, setErr] = useState(null);
   const [msg, setMsg] = useState(null);
 
-  const changeState = async ({ target: { value } }) => {
-    console.log(value, "555");
-    modeState[1](value);
+  const changeState = async (e) => {
+    setMode(e.target.value);
     try {
       await axios.patch(`/plant/${id}/mode`, {
-        mode: modeState[0],
+        mode,
       });
     } catch (e) {
       setErr("Update mode failed");
-      modeState[1](1 - modeState[0]);
+      setMode(prev);
     }
   };
   const nav = useNavigate();
@@ -33,29 +33,26 @@ function Detail() {
   const unpairHanble = async () => {
     try {
       await axios.put(`/plant/${id}/unregister`);
-      console.log("deleted successfully!");
+
       nav("/home");
-    } catch (error) {
-      console.log("Something went wrong", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     axios.get(`/plant/${id}`).then(({ data }) => {
       setPlant(data);
-      modeState[1](data.mode);
+      setMode(data.mode);
     });
   }, []);
 
   return (
     <div>
-      <Radio state={modeState} onClick={changeState} />
       {err ? <div className="alert alert-danger">{err}</div> : null}
       {msg ? <div className="alert alert-success">{msg}</div> : null}
       <button
         type="button"
         className="btn btn-danger-1 "
-        disabled={modeState[0] === 1}
+        disabled={mode === 1}
         onClick={async () => {
           try {
             await axios.patch(`/plant/${id}/water`, {
@@ -80,6 +77,17 @@ function Detail() {
       <div className="detail">
         <h4>Light: {plant.light ?? "N/A"}</h4>
       </div>
+      <Form.Select
+        size="sm"
+        style={{
+          marginBottom: "10px",
+        }}
+        onChange={changeState}
+        value={mode}
+      >
+        <option value={1}>Auto</option>
+        <option value={0}>Manual</option>
+      </Form.Select>
       <button type="button" className="btn btn-danger-2" onClick={unpairHanble}>
         {/* <svg
           xmlns="http://www.w3.org/2000/svg"

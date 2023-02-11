@@ -39,14 +39,11 @@ const Create = () => {
 
   useEffect(() => {
     axios.get("/board").then((data) => {
-      console.log("DATA", data.data);
       setBoards([{ board_id: 0 }, ...data.data]);
     });
   }, []);
 
-  useEffect(() => {
-    console.log({ name, temp, moist, light, board });
-  }, [name, temp, moist, light, board]);
+  useEffect(() => {}, [name, temp, moist, light, board]);
 
   return (
     <div>
