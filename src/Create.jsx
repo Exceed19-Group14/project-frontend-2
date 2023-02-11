@@ -5,6 +5,7 @@ import TextBox from "./components/TextBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import DateTimePicker from "react-datetime-picker";
+import { Alert } from "react-bootstrap";
 
 const Create = () => {
   const [name, setName] = useState("");
@@ -13,10 +14,10 @@ const Create = () => {
   const [board, setBoard] = useState("");
   const [boards, setBoards] = useState([]);
   const [time, setTime] = useState("");
-  const [waterDuration, setWaterDuration] = useState(1000);
+  const [err, setErr] = useState(null);
 
   const [plantDate, setPlantDate] = useState(new Date());
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
   const clickEvent = async () => {
     console.log(board);
@@ -30,14 +31,13 @@ const Create = () => {
       targeted_light: 0,
     };
 
-    console.log(data);
-
-    const response = await axios.post("/plant", data);
-    if (response.status != 201) {
-      // TODO: Popup error
-      console.error("Errors");
-    } else {
-      navigate("/home");
+    try {
+      await axios.post("/plant", data);
+      nav("/home");
+    } catch (e) {
+      setErr(
+        e?.response?.data?.detail ?? `Unknown error: ${JSON.stringify(e)}`
+      );
     }
   };
 
@@ -52,6 +52,7 @@ const Create = () => {
   return (
     <div>
       <h1 className="headline">Add New Tree</h1>
+      {err ? <Alert variant="danger">{err}</Alert> : null}
       <div className="Input">
         <div id="rectangle"></div>
         <div>
@@ -59,6 +60,7 @@ const Create = () => {
           <div className="idk">
             <TextBox
               inside="Your Plant Name"
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -66,6 +68,7 @@ const Create = () => {
             <p>Targeted Temperature</p>
             <TextBox
               inside="Temperature"
+              value={temp}
               onChange={(e) => setTemp(e.target.value)}
             />
           </div>
@@ -73,11 +76,12 @@ const Create = () => {
             <p>Targeted Moisture</p>
             <TextBox
               inside="Moisture"
+              value={moist}
               onChange={(e) => setMoist(e.target.value)}
             />
           </div>
           <div className="row">
-          <div>
+            <div>
               <p>Board</p>
               <select
                 aria-label="Default select example"
@@ -92,17 +96,18 @@ const Create = () => {
                 ))}
               </select>
             </div>
-          <div>
-            <p>Plant Date</p>
-            <DateTimePicker
-              value={plantDate}
-              onChange={(d) => setPlantDate(d)}
-              disableClock={true}
-            />
-          </div>
             <div>
-              <p>Time (in sec)</p>
-              {/* <select
+              <p>Plant Date</p>
+              <DateTimePicker
+                value={plantDate}
+                onChange={(d) => setPlantDate(d)}
+                disableClock={true}
+              />
+            </div>
+          </div>
+          <div>
+            <p>Time (in sec)</p>
+            {/* <select
                 aria-label="Default select example"
                 className="TextBox"
                 
@@ -115,11 +120,11 @@ const Create = () => {
                   </option>
                 ))}
               </select> */}
-              <TextBox
+            <TextBox
               inside="Time"
+              value={time}
               onChange={(e) => setTime(e.target.value)}
             />
-            </div>
           </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ const Home = () => {
 
         <div className="plantlist">
           {plant.map((plant, index) => (
-            <div className="plantlist">
+            <div className="plantlist" key={index}>
               <Card1
                 key={index}
                 name={plant.name}
