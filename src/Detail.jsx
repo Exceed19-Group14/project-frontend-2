@@ -2,7 +2,7 @@ import Card from "./components/card";
 import Radio from "./components/radio-button";
 import pic from "./components/water-b.png";
 import "./App.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import pic2 from "./components/pic02.png"
@@ -11,6 +11,20 @@ function Detail() {
   const { id } = useParams();
 
   const [plant, setPlant] = useState({});
+  const nav = useNavigate()
+
+
+  const unpairHanble = async () => {
+    try {
+      await axios.put(
+        `/plant/${id}/unregister`
+      )
+      console.log("deleted successfully!")
+      nav("/home")
+    } catch (error) {
+      console.log("Something went wrong", error)
+    }
+  }
 
   useEffect(() => {
     axios.get(`/plant/${id}`).then(({ data }) => setPlant(data));
@@ -33,8 +47,8 @@ function Detail() {
       <div className="detail">
         <h4>Light: {plant.light ?? "N/A"}</h4>
       </div>
-      <button type="button" className="btn btn-danger-2" >
-        <svg
+      <button type="button" className="btn btn-danger-2" onClick={unpairHanble}>
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -47,8 +61,8 @@ function Detail() {
             fill-rule="evenodd"
             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
           />
-        </svg>
-      </button>
+        </svg> */}
+      Unpair</button>
     </div>
   );
 }
