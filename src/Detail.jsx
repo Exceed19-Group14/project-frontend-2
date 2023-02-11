@@ -1,12 +1,15 @@
 import Card from "./components/card";
 import Radio from "./components/radio-button";
 import pic from "./components/water-b.png";
-import "./App.css";
+// import "./App.css";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import pic2 from "./components/pic02.png";
 import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Detail() {
   const { id } = useParams();
@@ -98,6 +101,7 @@ function Detail() {
       <div className="detail">
         <h4>Board: {plant.board ?? "N/A"}</h4>
       </div>
+
       <Form.Select
         size="sm"
         style={{
