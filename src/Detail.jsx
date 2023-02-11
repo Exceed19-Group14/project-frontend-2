@@ -5,7 +5,7 @@ import "./App.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import pic2 from "./components/pic02.png"
+import pic2 from "./components/pic02.png";
 
 function Detail() {
   const { id } = useParams();
@@ -40,6 +40,7 @@ function Detail() {
     <div>
       <Radio state={modeState} onClick={changeState} />
       {err ? <div className="alert alert-danger">{err}</div> : null}
+      {msg ? <div className="alert alert-success">{msg}</div> : null}
       <button
         type="button"
         className="btn btn-danger-1 "
@@ -47,7 +48,7 @@ function Detail() {
         onClick={async () => {
           try {
             await axios.patch(`/plant/${id}/water`, {
-              status: 1,
+              mode: 1,
             });
             setMsg("Watering send request success");
           } catch (e) {
@@ -68,7 +69,7 @@ function Detail() {
       <div className="detail">
         <h4>Light: {plant.light ?? "N/A"}</h4>
       </div>
-      <button type="button" className="btn btn-danger-2" >
+      <button type="button" className="btn btn-danger-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
