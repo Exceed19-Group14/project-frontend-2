@@ -32,7 +32,7 @@ function Detail() {
       <div className="detail">
         <h4>Light: {plant.light ?? "N/A"}</h4>
       </div>
-      <button type="button" className="btn btn-danger-2">
+      <button type="button" className="btn btn-danger-2" >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
