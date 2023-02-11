@@ -5,6 +5,7 @@ import "./App.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import pic2 from "./components/pic02.png"
 
 function Detail() {
   const { id } = useParams();
@@ -57,7 +58,7 @@ function Detail() {
         <img src={pic} className="water" />
       </button>
       <h1>Tree name: {plant.name}</h1>
-      <Card img={"https://cdn-icons-png.flaticon.com/512/1752/1752941.png"} />
+      <Card img={pic2} />
       <div className="detail">
         <h4>Temperature: {plant.temperature ?? "N/A"}</h4>
       </div>
@@ -67,7 +68,7 @@ function Detail() {
       <div className="detail">
         <h4>Light: {plant.light ?? "N/A"}</h4>
       </div>
-      <button type="button" className="btn btn-danger-2">
+      <button type="button" className="btn btn-danger-2" >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

@@ -3,6 +3,7 @@ import Card1 from "./components/card_home";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./styles/Home.css"
 
 const Home = () => {
   const [plant, setPlant] = useState([]);
@@ -35,15 +36,17 @@ const Home = () => {
         </div>
         <div className="plantlist">
           {plant.map((plant, index) => (
-            <Card1
-              key={index}
-              name={plant.name}
-              id={plant._id}
-              date={plant.plant_date}
-              moist={plant.moisture ?? "N/A"}
-              temp={plant.temperature ?? "N/A"}
-              light={plant.light ?? "N/A"}
-            />
+            <div className="plantlist">
+              <Card1
+                key={index}
+                name={plant.name}
+                id={plant._id}
+                date={plant.plant_date}
+                moist={plant.moisture ?? "N/A"}
+                temp={plant.temperature ?? "N/A"}
+                light={plant.light ?? "N/A"}
+              />
+            </div>
           ))}
         </div>
       </div>
