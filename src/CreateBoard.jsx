@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextBox from "./components/TextBox";
+import { Alert } from "react-bootstrap";
 import SubmitButton from "./components/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const CreateBoard = () => {
   const [boardID, setBoardID] = useState("");
-  const navigate = useNavigate();
+  const [err, setErr] = useState(null);
+  const nav = useNavigate();
   const clickEvent = async () => {
     try {
       await axios.post("/board", {
         board_id: boardID,
       });
-
       navigate("/home");
     } catch (e) {
-      console.error("Can't create board", e);
+      setErr(e.response.data.detail);
     }
   };
 
   return (
     <div>
       <h1>Add New Board</h1>
+      {err ? <Alert variant="danger">{err}</Alert> : null}
       <p>Board ID</p>
       <TextBox
         inside="Board ID (specific to your board)"
         onChange={(e) => setBoardID(e.target.value)}
-        type="number"
+        value={boardID}
       />
       <p className="Line">
         {" "}
