@@ -13,8 +13,9 @@ function App() {
       <main>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/detail" element={<Detail />} />
+            <Route path="/detail/:id" element={<Detail />} />
             <Route path="/create" element={<Create />} />
             <Route path="/createboard" element={<CreateBoard />}/>
           </Routes>

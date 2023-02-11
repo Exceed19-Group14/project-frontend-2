@@ -3,13 +3,13 @@ import Card1 from "./components/card_home";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./styles/Home.css"
 
 const Home = () => {
   const [plant, setPlant] = useState([]);
   useEffect(() => {
-    axios.get("http://group14.exceed19.online/plant").then((data) => {
-      console.log(data);
-      setPlant(data.data);
+    axios.get("/plant").then(({ data }) => {
+      setPlant(data);
     });
   }, []);
 
@@ -24,15 +24,29 @@ const Home = () => {
             width="20"
           />
         </div>
+        <div>
+          <a
+            href="create"
+            className="btn btn-primary btn-lg active"
+            role="button"
+            aria-pressed="true"
+          >
+            Create
+          </a>
+        </div>
         <div className="plantlist">
-          {plant.map((plant) => (
-            <Card1
-              id={plant.plant_id}
-              date={plant.plant_date}
-              moist={plant.moisture}
-              temp={plant.temperature}
-              light={plant.light}
-            />
+          {plant.map((plant, index) => (
+            <div className="plantlist">
+              <Card1
+                key={index}
+                name={plant.name}
+                id={plant._id}
+                date={plant.plant_date}
+                moist={plant.moisture ?? "N/A"}
+                temp={plant.temperature ?? "N/A"}
+                light={plant.light ?? "N/A"}
+              />
+            </div>
           ))}
         </div>
       </div>
