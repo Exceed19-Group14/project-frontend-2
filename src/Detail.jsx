@@ -54,7 +54,7 @@ function Detail() {
     axios.get("/board").then(({ data }) => {
       setBoards(data);
     });
-  });
+  }, []);
 
   // useEffect(() => {
   //   axios.get(`/plant/${id}`).then(({ data }) => {
@@ -158,6 +158,15 @@ function Detail() {
           <Button
             style={{
               color: "black",
+            }}
+            onClick={async () => {
+              try {
+                await axios.patch(`/plant/${id}/board`, {
+                  board: +board,
+                });
+              } catch (e) {
+                nav(`/detail/${id}`);
+              }
             }}
           >
             Pair
