@@ -6,12 +6,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import pic2 from "./components/pic02.png";
 import Form from "react-bootstrap/Form";
+import { Button } from "react-bootstrap";
 
 function Detail() {
   const { id } = useParams();
 
   const [plant, setPlant] = useState({});
   const [mode, setMode] = useState(0);
+  const [boards, setBoards] = useState([]);
+  const [board, setBoard] = useState(0);
 
   const [err, setErr] = useState(null);
   const [msg, setMsg] = useState(null);
@@ -46,6 +49,12 @@ function Detail() {
       setMode(data.mode);
     });
   }, []);
+
+  useEffect(() => {
+    axios.get("/board").then(({ data }) => {
+      setBoards(data);
+    });
+  });
 
   // useEffect(() => {
   //   axios.get(`/plant/${id}`).then(({ data }) => {
@@ -131,7 +140,30 @@ function Detail() {
         </svg> */}
           Unpair
         </button>
-      ) : null}
+      ) : (
+        <div>
+          <p>Pair with board</p>
+          <select
+            aria-label="Default select example"
+            className="SelectBox"
+            defaultValue={boards[0]?.board_id}
+            onChange={(e) => setBoard(e.target.value)}
+          >
+            {boards.map((item, index) => (
+              <option value={item.board_id} key={index}>
+                {item.board_id}
+              </option>
+            ))}
+          </select>
+          <Button
+            style={{
+              color: "black",
+            }}
+          >
+            Pair
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
