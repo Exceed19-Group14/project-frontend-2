@@ -1,5 +1,4 @@
 import Card from "./components/card";
-import Radio from "./components/radio-button";
 import pic from "./components/water-b.png";
 // import "./App.css";
 import { useParams, useNavigate } from "react-router-dom";
@@ -7,9 +6,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import pic2 from "./components/pic02.png";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 function Detail() {
   const { id } = useParams();
@@ -70,6 +66,17 @@ function Detail() {
     <div>
       {err ? <div className="alert alert-danger">{err}</div> : null}
       {msg ? <div className="alert alert-success">{msg}</div> : null}
+      <Form.Select
+        size="m"
+        style={{
+          marginBottom: "10px",
+        }}
+        onChange={changeState}
+        value={mode}
+      >
+        <option value={1}>Auto</option>
+        <option value={0}>Manual</option>
+      </Form.Select>
       <button
         type="button"
         className="btn btn-danger-1 "

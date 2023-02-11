@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SubmitButton from "./components/SubmitButton";
 import TextBox from "./components/TextBox";
-import Select from "./components/Select";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import DateTimePicker from "react-datetime-picker";
@@ -76,7 +76,22 @@ const Create = () => {
               onChange={(e) => setMoist(e.target.value)}
             />
           </div>
-
+          <div className="row">
+          <div>
+              <p>Board</p>
+              <select
+                aria-label="Default select example"
+                className="SelectBox"
+                defaultValue={boards[0]?.board_id}
+                onChange={(e) => setBoard(e.target.value)}
+              >
+                {boards.map((item, index) => (
+                  <option value={item.board_id} key={index}>
+                    {item.board_id}
+                  </option>
+                ))}
+              </select>
+            </div>
           <div>
             <p>Plant Date</p>
             <DateTimePicker
@@ -85,35 +100,21 @@ const Create = () => {
               disableClock={true}
             />
           </div>
-          <div>
-            <p>Board</p>
-            <select
-              aria-label="Default select example"
-              className="SelectBox"
-              defaultValue={boards[0]?.board_id}
-              onChange={(e) => setBoard(e.target.value)}
-            >
-              {boards.map((item, index) => (
-                <option value={item.board_id} key={index}>
-                  {item.board_id}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <p>Time (in sec)</p>
-            <select
-              aria-label="Default select example"
-              className="SelectBox"
-              defaultValue={boards[0]?.board_id}
-              onChange={(e) => setBoard(e.target.value)}
-            >
-              {boards.map((item, index) => (
-                <option value={item.board_id} key={index}>
-                  {item.board_id}
-                </option>
-              ))}
-            </select>
+            <div>
+              <p>Time (in sec)</p>
+              <select
+                aria-label="Default select example"
+                className="SelectBox"
+                defaultValue={boards[0]?.board_id}
+                onChange={(e) => setBoard(e.target.value)}
+              >
+                {boards.map((item, index) => (
+                  <option value={item.board_id} key={index}>
+                    {item.board_id}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
       </div>
