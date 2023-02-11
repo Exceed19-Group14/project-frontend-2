@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import pic2 from "./components/pic02.png";
 import Form from "react-bootstrap/Form";
 
+
 function Detail() {
   const { id } = useParams();
 
@@ -67,6 +68,17 @@ function Detail() {
     <div>
       {err ? <div className="alert alert-danger">{err}</div> : null}
       {msg ? <div className="alert alert-success">{msg}</div> : null}
+      <Form.Select
+        size="m"
+        style={{
+          marginBottom: "10px",
+        }}
+        onChange={changeState}
+        value={mode}
+      >
+        <option value={1}>Auto</option>
+        <option value={0}>Manual</option>
+      </Form.Select>
       <button
         type="button"
         className="btn btn-danger-1 "
@@ -98,17 +110,6 @@ function Detail() {
       <div className="detail">
         <h4>Board: {plant.board ?? "N/A"}</h4>
       </div>
-      <Form.Select
-        size="sm"
-        style={{
-          marginBottom: "10px",
-        }}
-        onChange={changeState}
-        value={mode}
-      >
-        <option value={1}>Auto</option>
-        <option value={0}>Manual</option>
-      </Form.Select>
       {plant.board ? (
         <button
           type="button"
