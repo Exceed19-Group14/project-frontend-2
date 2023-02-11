@@ -8,7 +8,9 @@ import "./styles/Home.css"
 const Home = () => {
   const [plant, setPlant] = useState([]);
   useEffect(() => {
-    axios.get("/plant").then(({ data }) => setPlant(data));
+    axios.get("/plant").then(({ data }) => {
+      setPlant(data);
+    });
   }, []);
 
   return (

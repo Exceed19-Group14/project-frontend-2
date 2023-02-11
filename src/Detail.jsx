@@ -5,35 +5,68 @@ import "./App.css";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import pic2 from "./components/pic02.png"
+import pic2 from "./components/pic02.png";
 
 function Detail() {
   const { id } = useParams();
 
   const [plant, setPlant] = useState({});
-  const nav = useNavigate()
+  const modeState = useState(0);
 
+  const [err, setErr] = useState(null);
+  const [msg, setMsg] = useState(null);
+
+  const changeState = async ({ target: { value } }) => {
+    console.log(value, "555");
+    modeState[1](value);
+    try {
+      await axios.patch(`/plant/${id}/mode`, {
+        mode: modeState[0],
+      });
+    } catch (e) {
+      setErr("Update mode failed");
+      modeState[1](1 - modeState[0]);
+    }
+  };
+  const nav = useNavigate();
 
   const unpairHanble = async () => {
     try {
-      await axios.put(
-        `/plant/${id}/unregister`
-      )
-      console.log("deleted successfully!")
-      nav("/home")
+      await axios.put(`/plant/${id}/unregister`);
+      console.log("deleted successfully!");
+      nav("/home");
     } catch (error) {
-      console.log("Something went wrong", error)
+      console.log("Something went wrong", error);
     }
-  }
+  };
 
   useEffect(() => {
-    axios.get(`/plant/${id}`).then(({ data }) => setPlant(data));
+    axios.get(`/plant/${id}`).then(({ data }) => {
+      setPlant(data);
+      modeState[1](data.mode);
+    });
   }, []);
 
   return (
     <div>
-      <Radio />
-      <button type="button" className="btn btn-danger-1 ">
+      <Radio state={modeState} onClick={changeState} />
+      {err ? <div className="alert alert-danger">{err}</div> : null}
+      {msg ? <div className="alert alert-success">{msg}</div> : null}
+      <button
+        type="button"
+        className="btn btn-danger-1 "
+        disabled={modeState[0] === 1}
+        onClick={async () => {
+          try {
+            await axios.patch(`/plant/${id}/water`, {
+              mode: 1,
+            });
+            setMsg("Watering send request success");
+          } catch (e) {
+            setErr("Watering send request failed");
+          }
+        }}
+      >
         <img src={pic} className="water" />
       </button>
       <h1>Tree name: {plant.name}</h1>
@@ -62,7 +95,8 @@ function Detail() {
             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
           />
         </svg> */}
-      Unpair</button>
+        Unpair
+      </button>
     </div>
   );
 }
