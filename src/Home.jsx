@@ -3,6 +3,7 @@ import Card1 from "./components/card_home";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./styles/Home.css"
 
 const Home = () => {
   const [plant, setPlant] = useState([]);

@@ -4,3 +4,16 @@
     flex-direction: column;
     align-items: center;
   }
+
+.btn {
+    width: auto;
+    height: auto;
+    float: right;
+    background-color: transparent;
+    border-color: black;
+}
+
+.btn.active {
+    background-color: #FC7300;
+    border-color: #FC7300;
+}
