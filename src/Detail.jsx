@@ -38,7 +38,7 @@ function Detail() {
     try {
       await axios.put(`/plant/${id}/unregister`);
 
-      nav("/home");
+      nav(0);
     } catch (error) {}
   };
 
