@@ -56,7 +56,7 @@ const Create = () => {
       <div className="Input">
         <div id="rectangle"></div>
         <div>
-          <p>Name</p>
+          <h5>Name</h5>
           <div className="idk">
             <TextBox
               inside="Your Plant Name"
@@ -65,7 +65,8 @@ const Create = () => {
             />
           </div>
           <div>
-            <p>Targeted Temperature</p>
+            <h5>Targeted Temperature</h5>
+            <h6>input suggustions: more than 29</h6>
             <TextBox
               inside="Temperature"
               value={temp}
@@ -73,7 +74,8 @@ const Create = () => {
             />
           </div>
           <div>
-            <p>Targeted Moisture</p>
+            <h5>Targeted Moisture</h5>
+            <h6>input suggustions: more than 200</h6>
             <TextBox
               inside="Moisture"
               value={moist}
