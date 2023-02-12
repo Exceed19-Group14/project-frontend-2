@@ -14,7 +14,7 @@ const CreateBoard = () => {
       await axios.post("/board", {
         board_id: boardID,
       });
-      navigate("/home");
+      nav("/home");
     } catch (e) {
       setErr(e.response.data.detail);
     }

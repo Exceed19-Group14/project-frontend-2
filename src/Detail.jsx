@@ -14,7 +14,7 @@ function Detail() {
   const [plant, setPlant] = useState({});
   const [mode, setMode] = useState(0);
   const [boards, setBoards] = useState([]);
-  const [board, setBoard] = useState(0);
+  const [board, setBoard] = useState(1);
   const [err, setErr] = useState(null);
   const [msg, setMsg] = useState(null);
 
@@ -159,6 +159,7 @@ function Detail() {
               color: "black",
             }}
             onClick={async (e) => {
+              console.log(board);
               try {
                 await axios
                   .patch(`/plant/${id}/board`, {
